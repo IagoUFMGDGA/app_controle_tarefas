@@ -4,7 +4,11 @@
 The body of your message.
 
 @component('mail::button', ['url' => ''])
-Button Text
+Button Text 1
+@endcomponent
+
+@component('mail::button', ['url' => ''])
+Button Text 2
 @endcomponent
 
 Thanks,<br>
