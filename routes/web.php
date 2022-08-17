@@ -17,11 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]); // informando que no processo de registro de novos usuários o e-mail de verificação deve ser enviado
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('home')
+    ->middleware('verified'); // fazendo que essa rota seja servida somente depois da validação de e-mail 
 
-Route::resource('/tarefa', 'App\Http\Controllers\TarefaController');
+Route::resource('/tarefa', 'App\Http\Controllers\TarefaController')
+    ->middleware('verified');
 
 Route::get('mensagem-teste', function (){
     return new MensagemTesteMail();
