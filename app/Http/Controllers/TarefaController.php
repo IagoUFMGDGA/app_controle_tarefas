@@ -6,6 +6,7 @@ use App\Models\Tarefa;
 use Illuminate\Http\Request;
 use App\Mail\NovaTarefaMail;
 use Mail;
+
 class TarefaController extends Controller
 {
 
@@ -20,10 +21,11 @@ class TarefaController extends Controller
      */
     public function index()
     {  
-        $id = auth()->user()->id;
-        $name = auth()->user()->name;
-        $email = auth()->user()->email;
-        return "| ID: $id | Nome: $name | E-mail: $email |";
+        $user_id = auth()->user()->id;
+        
+        $tarefas = Tarefa::where('user_id', $user_id)->get();
+        
+        return view('tarefa.index', ['tarefas' => $tarefas]);
     }
 
     /**
