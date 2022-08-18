@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]); // informando que no processo de registro de novos usuários o e-mail de verificação deve ser enviado
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+Route::get('/home', [App\Http\Controllers\TarefaController::class, 'index'])
     ->name('home')
     ->middleware('verified'); // fazendo que essa rota seja servida somente depois da validação de e-mail 
 
