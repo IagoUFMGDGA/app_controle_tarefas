@@ -15,6 +15,7 @@
                                 <th scope="col">Tarefa</th>
                                 <th scope="col">Data Limite</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -23,7 +24,17 @@
                                     <td>{{ $tarefa['id'] }}</td>
                                     <td>{{ $tarefa['tarefa'] }}</td>
                                     <td>{{ date('d/m/Y', strtotime( $tarefa['data_limite_conclusao'] )) }}</td>
-                                    <td><a href="{{ route('tarefa.edit', $tarefa['id']) }}">Editar</a></td>
+                                    <td><a href="{{ route('tarefa.edit', $tarefa['id']) }}"> Editar </a></td>
+                                    <td>
+                                        <form id="form_{{$tarefa->id}}" 
+                                            method="post"
+                                            action="{{ route('tarefa.destroy', ['tarefa' => $tarefa->id]) }}"
+                                        > 
+                                            @method('DELETE')
+                                            @csrf
+                                        </form>
+                                        <a href="#" onclick="document.getElementById('form_{{$tarefa->id}}').submit()"> Excluir </a>
+                                    </td>
                                 </tr>
                             @endforeach
                             <nav aria-label="Page navigation example">
