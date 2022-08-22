@@ -23,6 +23,7 @@ Route::get('/home', [App\Http\Controllers\TarefaController::class, 'index'])
     ->name('home')
     ->middleware('verified'); // fazendo que essa rota seja servida somente depois da validação de e-mail 
 
+Route::get('/tarefa/exportacao', 'App\Http\Controllers\TarefaController@exportacao')->name('tarefa.exportacao');
 Route::resource('/tarefa', 'App\Http\Controllers\TarefaController')
     ->middleware('verified');
 
