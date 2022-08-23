@@ -14,8 +14,9 @@
 
                         <div class="col-6">
                             <div class="float-right">
+                                <a href="{{ route('tarefa.exportacao', ['extensao' => 'csv'])}}" class="mr-3"> CSV </a>
+                                <a href="{{ route('tarefa.exportacao', ['extensao' => 'xlsx'])}}" class="mr-3"> XLSX </a>
                                 <a href="{{ route('tarefa.create')}} " class="mr-3"> Novo </a>
-                                <a href="{{ route('tarefa.exportacao')}} " class=""> XLSX </a>
                             </div>
                         </div>
 
@@ -59,7 +60,7 @@
                                     </li>
                                     
                                     @for( $i = 1; $i <= $tarefas->lastPage(); $i++ )
-                                        <li class="page-item {{ $tarefas->currentPage() == $i? 'active' : ''}} ">
+                                        <li class="page-item" {{ $tarefas->currentPage() == $i? 'active' : ''}} >
                                             <a class="page-link" href="{{ $tarefas->url($i) }}">{{ $i }}</a>
                                         </li>
                                     @endfor
